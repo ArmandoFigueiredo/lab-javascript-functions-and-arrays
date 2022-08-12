@@ -1,24 +1,88 @@
 // Iteration #1: Find the maximum
-function maxOfTwoNumbers() {}
-
+function maxOfTwoNumbers(num1, num2) {
+  if(num1 > num2){
+  return num1}
+  else {
+  return num2}
+}
 
 
 // Iteration #2: Find longest word
 const words = ['mystery', 'brother', 'aviator', 'crocodile', 'pearl', 'orchard', 'crackpot'];
 
-function findLongestWord() {}
+function findLongestWord(wordArray) {
+  let longestWord = "";
+
+    if(!Array.isArray(wordArray) || wordArray.length === 0)
+        return null;
+
+    wordArray.forEach(function(word) {
+
+        if(word.length > longestWord.length)
+            longestWord = word;
+    });
+
+    return longestWord;
+}
+
 
 
 
 // Iteration #3: Calculate the sum
 const numbers = [6, 12, 1, 18, 13, 16, 2, 1, 8, 10];
 
-function sumNumbers() {}
+function sumNumbers(numberArray) {
+  let result = 0;
+
+    if(!Array.isArray(numberArray) || numberArray.length === 0)
+        return 0;
+    
+    numberArray.forEach(function(number) {
+        result += number;
+    });
+
+    return result;
+}
+
+function averageNumbers(numberArray) {
+
+    if(!Array.isArray(numberArray) || numberArray.length === 0)
+        return null;
+
+    let sum = sumNumbers(numberArray);
+    let avg = sum / numberArray.length;
+
+    return avg;
+}
 
 
 
 // Iteration #3.1 Bonus:
-function sum() {}
+function sum(arrayToSum) {
+  let result = 0;
+
+    if(!Array.isArray(arrayToSum) || arrayToSum.length === 0)
+        return 0;    
+    
+    arrayToSum.forEach(function(element) {
+        type = typeof element;
+        switch(type) {
+            case 'string':
+                result += element.length;
+                break;
+            case 'number':
+                result += element;
+                break;
+            case 'boolean':
+                result += (element ? 1 : 0);
+                break;
+            default:
+                throw new Error("Unsupported data type sir or ma'am")
+        }
+    });
+
+    return result;
+}
 
 
 
@@ -26,16 +90,46 @@ function sum() {}
 // Level 1: Array of numbers
 const numbersAvg = [2, 6, 9, 10, 7, 4, 1, 9];
 
-function averageNumbers() {}
+function averageNumbers(numberArray) {
+  if(!Array.isArray(numberArray) || numberArray.length === 0)
+        return null;
+
+    let sum = sumNumbers(numberArray);
+    let avg = sum / numberArray.length;
+
+    return avg;
+}
 
 
 // Level 2: Array of strings
 const wordsArr = ['seat', 'correspond', 'linen', 'motif', 'hole', 'smell', 'smart', 'chaos', 'fuel', 'palace'];
 
-function averageWordLength() { }
+function averageWordLength(wordsArray) {
+  if(!Array.isArray(wordsArray) || wordsArray.length === 0)
+  return null;
+
+wordsLengthSum = 0;
+wordsLengthAvg = 0;
+
+wordsArray.forEach(function(word) {
+  wordsLengthSum += word.length;
+});
+
+wordsLengthAvg = wordsLengthSum / wordsArray.length;
+
+return wordsLengthAvg;
+}
 
 // Bonus - Iteration #4.1
-function avg() {}
+function avg(arrayToAvg) {
+  if(!Array.isArray(arrayToAvg) || arrayToAvg.length === 0)
+        return null;
+
+    let elementsSum = sum(arrayToAvg);
+    let result = elementsSum / arrayToAvg.length;
+
+    return result;
+}
 
 // Iteration #5: Unique arrays
 const wordsUnique = [
@@ -52,14 +146,40 @@ const wordsUnique = [
   'bring'
 ];
 
-function uniquifyArray() {}
+function uniquifyArray(wordsArray) {
+  let uniquifiedArray = [];
+
+    if(!Array.isArray(wordsArray) || wordsArray.length === 0)
+        return null;
+
+    wordsArray.forEach(function(word) {
+        if(uniquifiedArray.indexOf(word) === -1)
+            uniquifiedArray.push(word);
+    });
+
+    return uniquifiedArray;
+}
 
 
 
 // Iteration #6: Find elements
 const wordsFind = ['machine', 'subset', 'trouble', 'starting', 'matter', 'eating', 'truth', 'disobedience'];
 
-function doesWordExist() {}
+function doesWordExist(wordsArray, wordToFind) {
+  let result = false;
+
+    if(!Array.isArray(wordsArray) || wordsArray.length === 0)
+        return null;
+
+    wordsArray.forEach(function(word) {
+        
+        if(word == wordToFind)
+            result = true;
+        
+    });
+
+    return result;
+}
 
 
 
@@ -78,7 +198,17 @@ const wordsCount = [
   'matter'
 ];
 
-function howManyTimes() {}
+function howManyTimes(wordsArray, wordToCount) {
+  wordCount = 0;
+
+    wordsArray.forEach(function(word) {
+
+        if(word == wordToCount)
+            wordCount++;
+    });
+
+    return wordCount;
+}
 
 
 
@@ -106,7 +236,54 @@ const matrix = [
   [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48]
 ];
 
-function greatestProduct() {}
+function greatestProduct(numbersMatrix) {
+  max = 0;
+    result = 0;
+
+    for (i = 0; i < numbersMatrix.length; i++)
+    {
+        for (j = 0; j < numbersMatrix[i].length; j++)
+        {
+            if ((j - 3) >= 0)
+            {
+                result = numbersMatrix[i][j] * numbersMatrix[i][j - 1] *
+                         numbersMatrix[i][j - 2] * numbersMatrix[i][j - 3];
+                 
+                if (max < result)
+                    max = result;
+            }
+
+            if ((i - 3) >= 0)
+            {
+                result = numbersMatrix[i][j] * numbersMatrix[i - 1][j] *
+                         numbersMatrix[i - 2][j] * numbersMatrix[i - 3][j];
+                 
+                if (max < result)
+                    max = result;
+            }
+
+            if ((i - 3) >= 0 && (j - 3) >= 0)
+            {
+                result = numbersMatrix[i][j] * numbersMatrix[i - 1][j - 1] *
+                         numbersMatrix[i - 2][j - 2] * numbersMatrix[i - 3][j - 3];
+                 
+                if (max < result)
+                    max = result;
+            }
+
+            if ((i - 3) >= 0 && (j - 1) <= 0)
+            {
+                result = numbersMatrix[i][j] * numbersMatrix[i - 1][j + 1] *
+                         numbersMatrix[i - 2][j + 2] * numbersMatrix[i - 3][j + 3];
+     
+                if (max < result)
+                    max = result;
+            }
+        }
+    }
+ 
+    return max;
+}
 
 
 
@@ -128,3 +305,4 @@ if (typeof module !== 'undefined') {
     greatestProduct
   };
 }
+
